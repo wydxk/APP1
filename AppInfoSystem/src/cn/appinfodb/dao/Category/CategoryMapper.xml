@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.appinfodb.dao.Category.CategoryMapper">
+
+
+<select id="selectCate1" resultType="Category">
+SELECT app_category.id AS id,categoryName FROM app_category 
+INNER JOIN app_info ON app_info.categoryLevel1=app_category.id
+<where>
+		<if test="categoryLevel1!0">
+			categoryLevel1=#{categoryLevel1}
+		</if>
+</where>
+GROUP BY app_category.id
+</select>
+<select id="selectCate2" resultType="Category">
+SELECT app_category.id AS id,categoryName FROM app_category 
+INNER JOIN app_info ON app_info.categoryLevel2=app_category.id
+<where>
+		<if test="categoryLevel2!=0">
+			categoryLevel2=#{categoryLevel2}
+		</if>
+</where>
+GROUP BY app_category.id
+</select>
+<select id="selectCate3" resultType="Category">
+SELECT app_category.id AS id,categoryName FROM app_category 
+INNER JOIN app_info ON app_info.categoryLevel3=app_category.id
+<where>
+		<if test="categoryLevel3!=0">
+			categoryLevel3=#{categoryLevel3}
+		</if>
+</where>
+GROUP BY app_category.id
+</select>
+
+
+<select id="selectCa2" resultType="Category">
+SELECT app_category.id AS id,categoryName FROM app_category 
+INNER JOIN app_info ON app_info.categoryLevel2=app_category.id
+GROUP BY app_category.id
+</select>
+
+<select id="selectCa3" resultType="Category">
+SELECT app_category.id AS id,categoryName FROM app_category 
+INNER JOIN app_info ON app_info.categoryLevel3=app_category.id
+GROUP BY app_category.id
+</select>
+
+<select id="selectCa1" resultType="Category">
+SELECT app_category.id AS id,categoryName FROM app_category 
+INNER JOIN app_info ON app_info.categoryLevel1=app_category.id
+GROUP BY app_category.id
+</select>
+
+
+	<select id="getCategoryOne" resultType="Category">
+		SELECT
+		id,categoryName,parentId FROM app_category
+		WHERE parentId IS NULL
+	</select>
+	
+	<select id="getCategoryTow" resultType="Category" parameterType="int">
+		SELECT
+		id,categoryName,parentId FROM app_category
+		WHERE parentId=#{firstListId}
+	</select>
+	
+	<select id="getCategoryThree" resultType="Category" parameterType="int">
+		SELECT id,categoryName,parentId FROM app_category
+		WHERE parentId =#{secoundlistId}
+	</select>
+
+
+</mapper>
