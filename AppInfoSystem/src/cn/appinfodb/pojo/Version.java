@@ -3,6 +3,10 @@ package cn.appinfodb.pojo;
 import java.io.Serializable;
 import java.sql.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Version implements Serializable {
 	/**
 	 * 
@@ -18,10 +22,55 @@ public class Version implements Serializable {
 	private int createdBy;//创建者（来源于dev_user开发者信息表的用户id）
 	private Date creationDate;//创建时间
 	private int modifyBy;//更新者（来源于dev_user开发者信息表的用户id）
+	
+	@JSONField(format="yyyy-MM-dd")
 	private Date modifyDate;//最新更新时间
 	private String apkLocPath;//apk文件的服务器存储路径
 	private String apkFileName;//上传的apk文件名称
 	
+	private String softwareName;
+	private String appName;
+	private String publishStatusName;
+	private int appinfoId;
+	private int status;
+	private String valueName;
+	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public String getValueName() {
+		return valueName;
+	}
+	public void setValueName(String valueName) {
+		this.valueName = valueName;
+	}
+	public String getPublishStatusName() {
+		return publishStatusName;
+	}
+	public void setPublishStatusName(String publishStatusName) {
+		this.publishStatusName = publishStatusName;
+	}
+	public String getAppName() {
+		return appName;
+	}
+	public void setAppName(String appName) {
+		this.appName = appName;
+	}
+	public int getAppinfoId() {
+		return appinfoId;
+	}
+	public void setAppinfoId(int appinfoId) {
+		this.appinfoId = appinfoId;
+	}
+	public String getSoftwareName() {
+		return softwareName;
+	}
+	public void setSoftwareName(String softwareName) {
+		this.softwareName = softwareName;
+	}
 	public Version(){}
 	public Version(int id, int appId, String versionNo, String versionInfo,
 			int publishStatus, String downloadLink, String versionSize,

@@ -1,7 +1,7 @@
 package cn.appinfodb.pojo;
 
 import java.io.Serializable;
-import java.math.BigInteger;
+
 import java.sql.Date;
 
 
@@ -10,37 +10,31 @@ public class Info implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 431097569840327123L;
-	private BigInteger id;
+	private int id;
 	private String softwareName;//软件名称
 	private String APKName;//APK名称（唯一）
 	private String supportROM;//支持ROM
 	private String interfaceLanguage;//界面语言
 	private String softwareSize;//软件大小（单位：M）
 	private Date updateDate;//更新日期
-	private BigInteger devId;//开发者id（来源于：dev_user表的开发者id）
+	private int devId;//开发者id（来源于：dev_user表的开发者id）
 	private String appInfo;//应用简介
-	private BigInteger status;//状态（来源于：data_dictionary，1 待审核 2 审核通过 3 审核不通过 4 已上架 5 已下架）
+	private int status;//状态（来源于：data_dictionary，1 待审核 2 审核通过 3 审核不通过 4 已上架 5 已下架）
 	private Date onSaleDate;//上架时间
 	private Date offSaleDate;//下架时间
-	private BigInteger flatformId;//所属平台（来源于：data_dictionary，1 手机 2 平板 3 通用）
-	private BigInteger categoryLevel3;//所属三级分类（来源于：data_dictionary）
-	private BigInteger downloads;//下载量（单位：次）
-	private BigInteger createdBy;//创建者（来源于dev_user开发者信息表的用户id）
+	private int flatformId;//所属平台（来源于：data_dictionary，1 手机 2 平板 3 通用）
+	private int categoryLevel3;//所属三级分类（来源于：data_dictionary）
+	private int downloads;//下载量（单位：次）
+	private int createdBy;//创建者（来源于dev_user开发者信息表的用户id）
 	private Date creationDate;//创建时间
-	private BigInteger modifyBy;//更新者（来源于dev_user开发者信息表的用户id）
+	private int modifyBy;//更新者（来源于dev_user开发者信息表的用户id）
 	private Date modifyDate;//最新更新时间
-	private BigInteger categoryLevel1;//所属一级分类（来源于：data_dictionary）
-	private BigInteger categoryLevel2;//所属二级分类（来源于：data_dictionary
+	private int categoryLevel1;//所属一级分类（来源于：data_dictionary）
+	private int categoryLevel2;//所属二级分类（来源于：data_dictionary
 	private String logoPicPath;//LOGO图片url路径
 	private String logoLocPath;//LOGO图片的服务器存储路径
-	private BigInteger versionId;//最新的版本id
+	private int versionId;//最新的版本id
 
-	
-	/*private CategoryMapper categoryMapper;
-	private DataDictionary dataDictionary;
-	private Version version;*/
-	
-	
 	
 
 	private DataDictionary dataDictionary;
@@ -54,10 +48,57 @@ public class Info implements Serializable {
 	private String categoryLevel1Name;
 	private String categoryLevel2Name;
 	private String categoryLevel3Name;
-	public BigInteger getId() {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public int getId() {
 		return id;
 	}
-	public void setId(BigInteger id) {
+	public Info(){}
+	public Info(int id, String softwareName, String aPKName,
+			String supportROM, String interfaceLanguage, String softwareSize,
+			Date updateDate, int devId, String appInfo,
+			int status, Date onSaleDate, Date offSaleDate,
+			int flatformId, int categoryLevel3,
+			int downloads, int createdBy, Date creationDate,
+			int modifyBy, Date modifyDate, int categoryLevel1,
+			int categoryLevel2, String logoPicPath, String logoLocPath,
+			int versionId) {
+		super();
+		this.id = id;
+		this.softwareName = softwareName;
+		APKName = aPKName;
+		this.supportROM = supportROM;
+		this.interfaceLanguage = interfaceLanguage;
+		this.softwareSize = softwareSize;
+		this.updateDate = updateDate;
+		this.devId = devId;
+		this.appInfo = appInfo;
+		this.status = status;
+		this.onSaleDate = onSaleDate;
+		this.offSaleDate = offSaleDate;
+		this.flatformId = flatformId;
+		this.categoryLevel3 = categoryLevel3;
+		this.downloads = downloads;
+		this.createdBy = createdBy;
+		this.creationDate = creationDate;
+		this.modifyBy = modifyBy;
+		this.modifyDate = modifyDate;
+		this.categoryLevel1 = categoryLevel1;
+		this.categoryLevel2 = categoryLevel2;
+		this.logoPicPath = logoPicPath;
+		this.logoLocPath = logoLocPath;
+		this.versionId = versionId;
+	}
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getSoftwareName() {
@@ -96,10 +137,10 @@ public class Info implements Serializable {
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
-	public BigInteger getDevId() {
+	public int getDevId() {
 		return devId;
 	}
-	public void setDevId(BigInteger devId) {
+	public void setDevId(int devId) {
 		this.devId = devId;
 	}
 	public String getAppInfo() {
@@ -108,10 +149,10 @@ public class Info implements Serializable {
 	public void setAppInfo(String appInfo) {
 		this.appInfo = appInfo;
 	}
-	public BigInteger getStatus() {
+	public int getStatus() {
 		return status;
 	}
-	public void setStatus(BigInteger status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 	public Date getOnSaleDate() {
@@ -126,28 +167,28 @@ public class Info implements Serializable {
 	public void setOffSaleDate(Date offSaleDate) {
 		this.offSaleDate = offSaleDate;
 	}
-	public BigInteger getFlatformId() {
+	public int getFlatformId() {
 		return flatformId;
 	}
-	public void setFlatformId(BigInteger flatformId) {
+	public void setFlatformId(int flatformId) {
 		this.flatformId = flatformId;
 	}
-	public BigInteger getCategoryLevel3() {
+	public int getCategoryLevel3() {
 		return categoryLevel3;
 	}
-	public void setCategoryLevel3(BigInteger categoryLevel3) {
+	public void setCategoryLevel3(int categoryLevel3) {
 		this.categoryLevel3 = categoryLevel3;
 	}
-	public BigInteger getDownloads() {
+	public int getDownloads() {
 		return downloads;
 	}
-	public void setDownloads(BigInteger downloads) {
+	public void setDownloads(int downloads) {
 		this.downloads = downloads;
 	}
-	public BigInteger getCreatedBy() {
+	public int getCreatedBy() {
 		return createdBy;
 	}
-	public void setCreatedBy(BigInteger createdBy) {
+	public void setCreatedBy(int createdBy) {
 		this.createdBy = createdBy;
 	}
 	public Date getCreationDate() {
@@ -156,10 +197,10 @@ public class Info implements Serializable {
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
-	public BigInteger getModifyBy() {
+	public int getModifyBy() {
 		return modifyBy;
 	}
-	public void setModifyBy(BigInteger modifyBy) {
+	public void setModifyBy(int modifyBy) {
 		this.modifyBy = modifyBy;
 	}
 	public Date getModifyDate() {
@@ -168,16 +209,16 @@ public class Info implements Serializable {
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
-	public BigInteger getCategoryLevel1() {
+	public int getCategoryLevel1() {
 		return categoryLevel1;
 	}
-	public void setCategoryLevel1(BigInteger categoryLevel1) {
+	public void setCategoryLevel1(int categoryLevel1) {
 		this.categoryLevel1 = categoryLevel1;
 	}
-	public BigInteger getCategoryLevel2() {
+	public int getCategoryLevel2() {
 		return categoryLevel2;
 	}
-	public void setCategoryLevel2(BigInteger categoryLevel2) {
+	public void setCategoryLevel2(int categoryLevel2) {
 		this.categoryLevel2 = categoryLevel2;
 	}
 	public String getLogoPicPath() {
@@ -192,10 +233,10 @@ public class Info implements Serializable {
 	public void setLogoLocPath(String logoLocPath) {
 		this.logoLocPath = logoLocPath;
 	}
-	public BigInteger getVersionId() {
+	public int getVersionId() {
 		return versionId;
 	}
-	public void setVersionId(BigInteger versionId) {
+	public void setVersionId(int versionId) {
 		this.versionId = versionId;
 	}
 	public DataDictionary getDataDictionary() {
@@ -258,55 +299,7 @@ public class Info implements Serializable {
 	public void setCategoryLevel3Name(String categoryLevel3Name) {
 		this.categoryLevel3Name = categoryLevel3Name;
 	}
-	public Info(BigInteger id, String softwareName, String aPKName,
-			String supportROM, String interfaceLanguage, String softwareSize,
-			Date updateDate, BigInteger devId, String appInfo,
-			BigInteger status, Date onSaleDate, Date offSaleDate,
-			BigInteger flatformId, BigInteger categoryLevel3,
-			BigInteger downloads, BigInteger createdBy, Date creationDate,
-			BigInteger modifyBy, Date modifyDate, BigInteger categoryLevel1,
-			BigInteger categoryLevel2, String logoPicPath, String logoLocPath,
-			BigInteger versionId, DataDictionary dataDictionary,
-			Category category, String versionNo, String valueName,
-			String flatformName, String statusName, String categoryName,
-			String categoryLevel1Name, String categoryLevel2Name,
-			String categoryLevel3Name) {
-		super();
-		this.id = id;
-		this.softwareName = softwareName;
-		APKName = aPKName;
-		this.supportROM = supportROM;
-		this.interfaceLanguage = interfaceLanguage;
-		this.softwareSize = softwareSize;
-		this.updateDate = updateDate;
-		this.devId = devId;
-		this.appInfo = appInfo;
-		this.status = status;
-		this.onSaleDate = onSaleDate;
-		this.offSaleDate = offSaleDate;
-		this.flatformId = flatformId;
-		this.categoryLevel3 = categoryLevel3;
-		this.downloads = downloads;
-		this.createdBy = createdBy;
-		this.creationDate = creationDate;
-		this.modifyBy = modifyBy;
-		this.modifyDate = modifyDate;
-		this.categoryLevel1 = categoryLevel1;
-		this.categoryLevel2 = categoryLevel2;
-		this.logoPicPath = logoPicPath;
-		this.logoLocPath = logoLocPath;
-		this.versionId = versionId;
-		this.dataDictionary = dataDictionary;
-		this.category = category;
-		this.versionNo = versionNo;
-		this.valueName = valueName;
-		this.flatformName = flatformName;
-		this.statusName = statusName;
-		this.categoryName = categoryName;
-		this.categoryLevel1Name = categoryLevel1Name;
-		this.categoryLevel2Name = categoryLevel2Name;
-		this.categoryLevel3Name = categoryLevel3Name;
-	}
+	
 
 	
 	

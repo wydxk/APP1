@@ -66,12 +66,12 @@ GROUP BY app_category.id
 	<select id="getCategoryTow" resultType="Category" parameterType="int">
 		SELECT
 		id,categoryName,parentId FROM app_category
-		WHERE parentId=#{firstListId}
+		WHERE parentId=#{parentId}
 	</select>
 	
-	<select id="getCategoryThree" resultType="Category" parameterType="int">
+	<select id="getCategoryThree" resultType="Category" >
 		SELECT id,categoryName,parentId FROM app_category
-		WHERE parentId =#{secoundlistId}
+		WHERE parentId &gt; 2
 	</select>
 
 

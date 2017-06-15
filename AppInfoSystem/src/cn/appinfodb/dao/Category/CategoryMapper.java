@@ -20,10 +20,10 @@ public interface CategoryMapper {
 	
 	
 
-	public List<Category>getCategoryOne();
+	public List<Category>getCategoryOne(@Param("parentId")int parentId);
 	
-	public List<Category>getCategoryTow(int firstListId);
+	public List<Category>getCategoryTow(int parentId);
 	
-	public List<Category>getCategoryThree(int secoundlistId);
+	public List<Category>getCategoryThree(@Param("parentId")int parentId);
 
 }

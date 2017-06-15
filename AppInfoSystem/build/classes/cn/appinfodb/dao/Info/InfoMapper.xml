@@ -5,88 +5,100 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.appinfodb.dao.Info.InfoMapper">
 
+	<!-- 查询符合条件的信息，管理 -->
+	<select id="selectInfo" resultType="Info">
+		SELECT app_info.id AS id,
+		softwareName,
+		APKName,softwareSize,
+		d1.typeName AS flatformName,
+		a1.categoryName AS categoryLevel1Name,
+		a2.categoryName AS categoryLevel2Name,
+		a3.categoryName AS
+		categoryLevel3Name,
+		d2.typeName AS statusName,
+		downloads,versionNo
+		FROM
+		app_info
+		INNER JOIN data_dictionary AS d1 ON d1.id=app_info.flatformId
+		INNER JOIN data_dictionary AS d2 ON d2.id=app_info.flatformId
+		INNER
+		JOIN app_category AS a1 ON a1.id=app_info.categoryLevel1
+		INNER JOIN
+		app_category AS a2 ON a2.id=app_info.categoryLevel2
+		INNER JOIN
+		app_category AS a3 ON a3.id=app_info.categoryLevel3
+		INNER JOIN
+		app_version ON app_version.id=app_info.versionId
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="softwareName!=null and softwareName!=''">
+				and softwareName=#{softwareName}
+			</if>
+			<if test="flatformId!=0">
+				and flatformId=#{flatformId}
+			</if>
+			<if test="categoryLevel1!=0">
+				and categoryLevel1=#{categoryLevel1}
+			</if>
+			<if test="categoryLevel2!=0">
+				and categoryLevel2=#{categoryLevel2}
+			</if>
+			<if test="categoryLevel3!=0">
+				and categoryLevel3=#{categoryLevel3}
+			</if>
+		</trim>
+		limit #{index},#{pageCount}
+	</select>
+	<!-- <resultMap type="Info" id="rm"></resultMap> -->
+	<!-- 查询符合条件总记录数 ,管理 -->
+	<select id="selectInfoCount" resultType="int">
+		SELECT count(1) FROM app_info
+		<trim prefix="where" prefixOverrides="and|or">
 
-<select id="selectInfo" resultMap="rm">
-SELECT app_info.id AS id,
-	softwareName,
-	APKName,softwareSize,
-	d1.typeName AS flatformName,
-	a1.categoryName AS categoryLevel1Name,
-	a2.categoryName AS categoryLevel2Name,
-	a3.categoryName AS categoryLevel3Name,
-	d2.typeName AS statusName,
-	downloads,versionNo
-FROM app_info 
-INNER JOIN data_dictionary AS d1 ON d1.id=app_info.flatformId
-INNER JOIN data_dictionary AS d2 ON d2.id=app_info.flatformId
-INNER JOIN  app_category AS a1 ON a1.id=app_info.categoryLevel1
-INNER JOIN  app_category AS a2 ON a2.id=app_info.categoryLevel2
-INNER JOIN  app_category AS a3 ON a3.id=app_info.categoryLevel3
-INNER JOIN app_version ON app_version.id=app_info.versionId
-<trim prefix="where" prefixOverrides="and|or">
-		<if test="softwareName!=null and softwareName!=''">
-			and	softwareName=#{softwareName}
-		</if>
-		<if test="flatformId!=0">
-			and flatformId=#{flatformId}
-		</if>
-		<if test="categoryLevel1!=0">
-			and categoryLevel1=#{categoryLevel1}
-		</if>
-		<if test="categoryLevel2!=0">
-			and categoryLevel2=#{categoryLevel2}
-		</if>
-		<if test="categoryLevel3!=0">
-			and categoryLevel3=#{categoryLevel3}
-		</if>
-</trim>
-			limit #{index},#{pageCount}
-</select>
-<resultMap type="Info" id="rm"></resultMap>
-
-<select id="selectInfoCount" resultType="int" >
-SELECT count(1) FROM app_info
-<trim prefix="where" prefixOverrides="and|or">
-		<if test="softwareName!=null and softwareName!=''">
-			and	softwareName=#{softwareName}
-		</if>
-		<if test="flatformId!=0">
-			and flatformId=#{flatformId}
-		</if>
-		<if test="categoryLevel1!=0">
-			and categoryLevel1=#{categoryLevel1}
-		</if>
-		<if test="categoryLevel2!=0">
-			and categoryLevel2=#{categoryLevel2}
-		</if>
-		<if test="categoryLevel3!=0">
-			and categoryLevel3=#{categoryLevel3}
-		</if>
-</trim>
-</select>
+			<if test="softwareName!=null and softwareName!=''">
+				and softwareName=#{softwareName}
+			</if>
+			<if test="flatformId!=0">
+				and flatformId=#{flatformId}
+			</if>
+			<if test="categoryLevel1!=0">
+				and categoryLevel1=#{categoryLevel1}
+			</if>
+			<if test="categoryLevel2!=0">
+				and categoryLevel2=#{categoryLevel2}
+			</if>
+			<if test="categoryLevel3!=0">
+				and categoryLevel3=#{categoryLevel3}
+			</if>
+		</trim>
+	</select>
 
 
 
 	<select id="getInfo" resultType="Info">
 		SELECT appinfodb.app_info.id AS id,
-		softwareName,APKName,softwareSize,
-		d1.valueName AS flatformName,
+		softwareName,APKName,softwareSize,status,
+		d1.valueName AS flatformName,versionId,
 		d2.valueName AS statusName,downloads,
 		a1.categoryName AS categoryLevel1Name,
-		a2.categoryName AS categoryLevel2Name,
+		a2.categoryName AS
+		categoryLevel2Name,
 		a3.categoryName AS categoryLevel3Name,
-		versionId AS versionNo
-		FROM appinfodb.app_info INNER JOIN appinfodb.data_dictionary AS d1 ON
+		versionId AS
+		versionNo
+		FROM appinfodb.app_info INNER JOIN appinfodb.data_dictionary
+		AS d1 ON
 		d1.valueId = flatformId AND d1.typeCode = 'APP_FLATFORM'
-		INNER JOIN
-		appinfodb.data_dictionary AS d2 ON d2.valueId = STATUS AND d2.typeCode= 'APP_STATUS'
+		INNER
+		JOIN
+		appinfodb.data_dictionary AS d2 ON d2.valueId = status AND
+		d2.typeCode= 'APP_STATUS'
 		INNER JOIN appinfodb.app_category AS a1 ON
 		categoryLevel1 = a1.id
 		INNER JOIN appinfodb.app_category AS a2 ON
 		categoryLevel2 = a2.id
 		INNER JOIN appinfodb.app_category AS a3 ON
 		categoryLevel3 = a3.id
-		
+
 		<where>
 			<if test="softwareName !=null and softwareName !=''">
 				and softwareName LIKE CONCAT('%',#{softwareName},'%')
@@ -106,47 +118,83 @@ SELECT count(1) FROM app_info
 			<if test="categoryLevel3 !=null and categoryLevel3!=''">
 				AND categoryLevel3=#{categoryLevel3}
 			</if>
-			
+
 		</where>
-	<!-- SELECT appinfodb.app_info.id AS id,
+		limit #{index},#{pageCount}
+	</select>
+
+	<!-- 查询符合条件总记录数，开发 -->
+	<select id="getInfoCount" resultType="int">
+		SELECT count(1) FROM app_info
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="status !=null and status!=''">
+				AND status=#{status}
+			</if>
+			<if test="softwareName!=null and softwareName!=''">
+				and softwareName LIKE CONCAT('%',#{softwareName},'%')
+			</if>
+			<if test="flatformId!=0">
+				and flatformId=#{flatformId}
+			</if>
+			<if test="categoryLevel1!=0">
+				and categoryLevel1=#{categoryLevel1}
+			</if>
+			<if test="categoryLevel2!=0">
+				and categoryLevel2=#{categoryLevel2}
+			</if>
+			<if test="categoryLevel3!=0">
+				and categoryLevel3=#{categoryLevel3}
+			</if>
+		</trim>
+	</select>
+	
+	
+	<select id="getInfoById" resultType="Info">
+
+		SELECT appinfodb.app_info.id AS id,
 		softwareName,
-		APKName,
+		APKName,status,versionId,
 		softwareSize,
-		d1.valueName AS flatformName,	
+		supportROM,
+		interfaceLanguage,
+		appInfo,
+		logoPicPath,
+		d1.valueName AS
+		flatformName,
 		d2.valueName AS statusName,
 		downloads,
-	    a1.categoryName AS categoryLevel1Name,
+		a1.categoryName AS categoryLevel1Name,
 		a2.categoryName AS categoryLevel2Name,
 		a3.categoryName AS categoryLevel3Name,
-		versionId AS versionNo
+		 versionNo
 		FROM
-		appinfodb.app_info INNER JOIN appinfodb.data_dictionary AS d1 ON d1.valueId = flatformId AND d1.typeCode = 'APP_FLATFORM'
-		INNER JOIN appinfodb.data_dictionary AS d2 ON d2.valueId = STATUS AND d2.typeCode = 'APP_STATUS'
-		INNER JOIN appinfodb.app_category  AS a1 ON categoryLevel1 = a1.id  
-		INNER JOIN appinfodb.app_category  AS a2 ON categoryLevel2 = a2.id 
-		INNER JOIN appinfodb.app_category  AS a3 ON categoryLevel3 = a3.id  -->
+		appinfodb.app_info INNER JOIN appinfodb.data_dictionary AS d1 ON
+		d1.valueId = flatformId AND d1.typeCode = 'APP_FLATFORM'
+		INNER JOIN
+		appinfodb.data_dictionary AS d2 ON d2.valueId = STATUS AND d2.typeCode
+		= 'APP_STATUS'
+		INNER JOIN appinfodb.app_category AS a1 ON
+		categoryLevel1 = a1.id
+		INNER JOIN appinfodb.app_category AS a2 ON categoryLevel2 = a2.id
+		INNER JOIN appinfodb.app_category AS a3 ON categoryLevel3 = a3.id
+		WHERE app_info.id=#{id}
+
 	</select>
-	<!-- <resultMap type="Info" id="InfoAndDic">
-		<id property="id" column="id" />
-		<result property="softwareName" column="softwareName" />
-		<result property="APKName" column="APKName" />
-		<result property="softwareSize" column="softwareSize" />
-		<result property="downloads" column="downloads" />
-		
-		<association property="dataDictionary" javaType="DataDictionary">
-			
-			<result property="valueName" column="flatformName" />
-			<result property="valueName" column="statusName" />
-		</association>
-		
-		<association property="category" javaType="Category">
-			
-			<result property="categoryName" column="categoryLevel1Name" />
-			<result property="categoryName" column="categoryLevel2Name" />
-			<result property="categoryName" column="categoryLevel3Name" />
-			
-		</association>
-	</resultMap>
- -->
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </mapper>

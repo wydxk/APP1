@@ -1,7 +1,7 @@
 package cn.appinfodb.pojo;
 
 import java.io.Serializable;
-import java.math.BigInteger;
+
 import java.sql.Date;
 
 public class Category implements Serializable {
@@ -21,11 +21,11 @@ public class Category implements Serializable {
 	/**
 	 * 父级节点id
 	 */
-	private BigInteger parentId;
+	private int parentId;
 	/**
 	 * 创建者
 	 */
-	private BigInteger createdBy;
+	private int createdBy;
 	/**
 	 * 创建时间
 	 */
@@ -33,7 +33,7 @@ public class Category implements Serializable {
 	/**
 	 * 更新者
 	 */
-	private BigInteger modifyBy;
+	private int modifyBy;
 	/**
 	 * 最新更新时间
 	 */
@@ -41,8 +41,8 @@ public class Category implements Serializable {
 	
 	public Category(){}
 	public Category(int id, String categoryCode, String categoryName,
-			BigInteger parentId, BigInteger createdBy, Date creationTime,
-			BigInteger modifyBy, Date modifyDate) {
+			int parentId, int createdBy, Date creationTime,
+			int modifyBy, Date modifyDate) {
 		super();
 		this.id = id;
 		this.categoryCode = categoryCode;
@@ -71,16 +71,16 @@ public class Category implements Serializable {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
-	public BigInteger getParentId() {
+	public int getParentId() {
 		return parentId;
 	}
-	public void setParentId(BigInteger parentId) {
+	public void setParentId(int parentId) {
 		this.parentId = parentId;
 	}
-	public BigInteger getCreatedBy() {
+	public int getCreatedBy() {
 		return createdBy;
 	}
-	public void setCreatedBy(BigInteger createdBy) {
+	public void setCreatedBy(int createdBy) {
 		this.createdBy = createdBy;
 	}
 	public Date getCreationTime() {
@@ -89,10 +89,10 @@ public class Category implements Serializable {
 	public void setCreationTime(Date creationTime) {
 		this.creationTime = creationTime;
 	}
-	public BigInteger getModifyBy() {
+	public int getModifyBy() {
 		return modifyBy;
 	}
-	public void setModifyBy(BigInteger modifyBy) {
+	public void setModifyBy(int modifyBy) {
 		this.modifyBy = modifyBy;
 	}
 	public Date getModifyDate() {

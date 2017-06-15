@@ -54,23 +54,23 @@ public class CategoryServiceImpl implements CategoryService {
 
 
 	@Override
-	public List<Category> getCategOne() {
+	public List<Category> getCategOne(int parentId) {
 		// TODO Auto-generated method stub
-		return categoryMapper.getCategoryOne();
+		return categoryMapper.getCategoryOne(parentId);
 	}
 
 
 	@Override
-	public List<Category> getCategTow(int firstListId) {
+	public List<Category> getCategTow( int parentId) {
 		// TODO Auto-generated method stub
-		return categoryMapper.getCategoryTow(firstListId);
+		return categoryMapper.getCategoryTow(parentId);
 	}
 
 
 	@Override
-	public List<Category> getCategThree(int secoundlistId) {
+	public List<Category> getCategThree(int parentId) {
 		// TODO Auto-generated method stub
-		return categoryMapper.getCategoryThree(secoundlistId);
+		return categoryMapper.getCategoryThree(parentId);
 	}
 
 }

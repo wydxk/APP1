@@ -31,12 +31,30 @@ public interface InfoMapper {
 				@Param("status")int status ,
 				@Param("categoryLevel1")int categoryLevel1 ,
 				@Param("categoryLevel2")int categoryLevel2 ,
-				@Param("categoryLevel3")int categoryLevel3 );
+				@Param("categoryLevel3")int categoryLevel3 ,
+				@Param("index")int index,
+				@Param("pageCount")int pageCount);
 		
-
-
+		/**
+		 * 根据条件查询信息列表数量，《开发》
+		 * @param softwareName
+		 * @param flatformId
+		 * @param status
+		 * @param categoryLevel1
+		 * @param categoryLevel2
+		 * @param categoryLevel3
+		 * @return
+		 */
+		public int getInfoCount(@Param("softwareName")String softwareName,
+				 @Param("flatformId")int flatformId,
+				 @Param("status")int status ,
+				 @Param("categoryLevel1")int categoryLevel1,
+				 @Param("categoryLevel2")int categoryLevel2,
+				 @Param("categoryLevel3")int categoryLevel3);
 	
 	
-
+		/*根据Id查询详情*/
+		public Info  getInfoById(@Param("id") int id);
+		
+		
 }
-/**/

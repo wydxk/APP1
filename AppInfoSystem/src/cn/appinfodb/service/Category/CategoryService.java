@@ -13,10 +13,12 @@ public interface CategoryService {
 	public List<Category> selectCa1();
 	public List<Category> selectCa2();
 	public List<Category> selectCa3();
-	public List<Category>getCategOne();
-
-	public List<Category>getCategTow(int firstListId);
 	
-	public List<Category>getCategThree(int secoundlistId);
+	
+	public List<Category>getCategOne(int parentId);
+
+	public List<Category>getCategTow(int parentId);
+	
+	public List<Category>getCategThree(int parentId);
 
 }
