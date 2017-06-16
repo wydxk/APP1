@@ -77,7 +77,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getInfo" resultType="Info">
 		SELECT appinfodb.app_info.id AS id,
 		softwareName,APKName,softwareSize,status,
-		d1.valueName AS flatformName,versionId,
+		d1.valueName AS
+		flatformName,versionId,
 		d2.valueName AS statusName,downloads,
 		a1.categoryName AS categoryLevel1Name,
 		a2.categoryName AS
@@ -147,11 +148,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</trim>
 	</select>
-	
-	
+
+
 	<select id="getInfoById" resultType="Info">
 
-		SELECT appinfodb.app_info.id AS id,
+		SELECT appinfodb.app_info.id
+		AS id,
 		softwareName,
 		APKName,status,versionId,
 		softwareSize,
@@ -163,10 +165,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		flatformName,
 		d2.valueName AS statusName,
 		downloads,
-		a1.categoryName AS categoryLevel1Name,
+		a1.categoryName AS
+		categoryLevel1Name,
 		a2.categoryName AS categoryLevel2Name,
-		a3.categoryName AS categoryLevel3Name,
-		 versionNo
+		a3.categoryName AS categoryLevel3Name
+
 		FROM
 		appinfodb.app_info INNER JOIN appinfodb.data_dictionary AS d1 ON
 		d1.valueId = flatformId AND d1.typeCode = 'APP_FLATFORM'
@@ -175,24 +178,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		= 'APP_STATUS'
 		INNER JOIN appinfodb.app_category AS a1 ON
 		categoryLevel1 = a1.id
-		INNER JOIN appinfodb.app_category AS a2 ON categoryLevel2 = a2.id
-		INNER JOIN appinfodb.app_category AS a3 ON categoryLevel3 = a3.id
+		INNER JOIN appinfodb.app_category AS a2 ON
+		categoryLevel2 = a2.id
+		INNER JOIN appinfodb.app_category AS a3 ON
+		categoryLevel3 = a3.id
 		WHERE app_info.id=#{id}
 
 	</select>
 
+
+	<!-- 删除APP信息 -->
+
+	<delete id="deleteApp" parameterType="int">
+		DELETE FROM app_info
+		WHERE
+		id = #{id};
+	</delete>
+<update id="changeVersionId" parameterType="Info">
+		UPDATE appinfodb.app_info 
+			SET modifyBy = #{modifyBy},  modifyDate = #{modifyDate} ,  versionId =#{versionId}
+	 			 WHERE
+	    	id =#{id} ;
+	</update>
+
 	
-
-
-
-
-
-
-
-
-
-
-
 
 
 

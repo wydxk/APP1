@@ -39,16 +39,64 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		app_version ON app_version.appId=app_info.id
 		
 		WHERE  typeCode='PUBLISH_STATUS'
-			<if test="appinfoId !=0">
+			<if test="appinfoId !=null and appinfoId!=''">
 				AND app_info.id=#{appinfoId}
 			</if>
-			<if test="versionId !=0">
+			<if test="versionId !=null and versionId!=''">
 				AND app_version.id=#{versionId}
 			</if>
 		
 	</select>
 
-
-
-
+<select id="selectVersionByAid" resultType="Version"  parameterType="int">
+		SELECT versionNo,app_version.id,versionSize,versionInfo,downloadLink,apkLocPath,
+		apkFileName FROM app_version 
+		INNER JOIN app_info ON app_info.versionId = app_version.id
+		WHERE app_info.id = #{id}
+	</select>
+<select id="selectVersion" resultType="Version">
+		SELECT app_info.id as AppinfoId,softwareName as appName,versionNo,publishStatus,versionSize,
+		valueName as publishStatusName,downloadLink,apkFileName,app_version.modifyDate as modifyDate FROM 
+		app_version INNER JOIN app_info ON app_info.id = app_version.appId
+		INNER JOIN data_dictionary ON app_version.publishStatus = data_dictionary.valueId 
+		WHERE typeName='发布状态' and app_info.id=#{id}
+	</select>
+	
+	
+	
+	<update id="changeVersion" parameterType="Version">
+		UPDATE app_version SET versionSize =#{versionSize},
+		modifyBy=#{modifyBy} ,modifyDate=#{modifyDate},
+		versionInfo =#{versionInfo} WHERE id= #{id}		
+	</update>
+	
+	<insert id="addVersion" parameterType="Version" >
+	INSERT INTO appinfodb.app_version
+		(
+		appId,versionNo,versionInfo,publishStatus,downloadLink,versionSize,createdBy,
+		creationDate,apkLocPath,apkFileName
+		)
+		VALUES
+		(
+		#{appId},#{versionNo},#{versionInfo},#{publishStatus},#{downloadLink},
+		#{versionSize},#{createdBy},#{creationDate},#{apkLocPath},#{apkFileName}
+		
+		);
+	</insert>
+	<!-- 查询最后插入的id号 -->
+	<select id="selectId" resultType="int" >
+		SELECT LAST_INSERT_ID();
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

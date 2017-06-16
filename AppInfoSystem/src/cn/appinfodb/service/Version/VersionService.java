@@ -17,5 +17,16 @@ public interface VersionService {
 	
 	public List <Version> getVersionByInfoIdAndVersionid( int appinfoId, int versionId);
 
+	public Version getVersionByInIdAndVerid( int versionId,int appinfoId);
+	
+	public Version selectVersionByAid( int id);
+	public List<Version> selectVersion( int appId);
+
+	public boolean changeVersion(Version version);
+	
+	public boolean addVersion(Version version);
+	
+	 public int selectId();
+	
 	
 }

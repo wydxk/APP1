@@ -42,12 +42,14 @@ public interface InfoService {
 	
 	/*根据Id查询详情*/
 	public Info  getInfById( int id);
+	
+	/*根据id删除APP信息*/
+	public boolean delApp(int id);
+	
+	
+	public boolean changeVersionId(Info info);
+	
 }
 
 
 
-
-
-	
-
-/**/ 

@@ -187,10 +187,13 @@ $(".viewApp").on("click",function(){
 
 $(".deleteApp").on("click",function(){
 	var obj = $(this);
+	alert(obj.attr("appsoftwarename"));
 	if(confirm("你确定要删除APP应用【"+obj.attr("appsoftwarename")+"】及其所有的版本吗？")){
+		
+		
 		$.ajax({
 			type:"GET",
-			url:"delapp.json",
+			url:"delapp",
 			data:{id:obj.attr("appinfoid")},
 			dataType:"json",
 			success:function(data){
@@ -203,10 +206,14 @@ $(".deleteApp").on("click",function(){
 					alert("对不起，APP应用【"+obj.attr("appsoftwarename")+"】不存在");
 				}
 			},
+			
 			error:function(data){
 				alert("对不起，删除失败");
+				
 			}
+			
 		});
+		
 	}
 });
 

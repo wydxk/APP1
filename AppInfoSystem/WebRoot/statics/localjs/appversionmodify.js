@@ -21,7 +21,7 @@ function delfile(id){
 
 $(function(){  
 	$("#back").on("click",function(){
-		window.location.href = "../applist.html";
+		window.location.href = "../dev/applist.html";
 	});
 	
 	//上传APK文件---------------------

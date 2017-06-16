@@ -14,4 +14,18 @@ public interface VersionMapper {
 	public List<Version> getVersionById(@Param("appinfoId") int appinfoId);
 	
 	public List <Version> getVersionByInfoIdAndVid(@Param("appinfoId") int appinfoId,@Param("versionId") int versionId);
+
+
+	public Version getVersionByInfAndVid(@Param("versionId") int versionId,@Param("appinfoId") int appinfoId);
+
+	public Version selectVersionByAid(@Param("id") int id);
+	
+	public List<Version> selectVersion(@Param("id") int appId);
+	
+	public int changeVersion(Version version);
+	
+	public int addVersion(Version version);
+	
+	public int selectId();
+	
 }

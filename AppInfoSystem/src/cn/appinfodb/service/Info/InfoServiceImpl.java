@@ -78,4 +78,24 @@ public class InfoServiceImpl implements InfoService {
 		return infoMapper.getInfoById(id);
 	}
 
+	@Override
+	public boolean delApp(int id) {
+		int row= infoMapper.deleteApp(id);
+		if(row==1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public boolean changeVersionId(Info info) {
+		int row =infoMapper.changeVersionId(info);
+		if(row ==1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+
 }

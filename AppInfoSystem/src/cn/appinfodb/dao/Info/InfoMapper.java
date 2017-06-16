@@ -56,5 +56,9 @@ public interface InfoMapper {
 		/*根据Id查询详情*/
 		public Info  getInfoById(@Param("id") int id);
 		
+		/*根据id删除APP信息*/
+		public int deleteApp(int id);
+		
+		public int changeVersionId(Info info);
 		
 }
