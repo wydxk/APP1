@@ -1,6 +1,7 @@
 package cn.appinfodb.pojo;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.Date;
 
 public class Promotion implements Serializable {
@@ -9,22 +10,22 @@ public class Promotion implements Serializable {
 	 */
 	private static final long serialVersionUID = -1579115687601929546L;
 	private int id;
-	private int appId;
+	private BigInteger appId;
 	private String adPicPath;
-	private int adPV;
+	private BigInteger adPV;
 	private int carouselPosition;
 	private Date startTime;
 	private Date endTime;
-	private int createdBy;
+	private BigInteger createdBy;
 	private Date creationDate;
-	private int modifyBy;
+	private BigInteger modifyBy;
 	private Date modifyDate;
 	
 	public Promotion(){}
-	public Promotion(int id, int appId, String adPicPath,
-			int adPV, int carouselPosition, Date startTime,
-			Date endTime, int createdBy, Date creationDate,
-			int modifyBy, Date modifyDate) {
+	public Promotion(int id, BigInteger appId, String adPicPath,
+			BigInteger adPV, int carouselPosition, Date startTime,
+			Date endTime, BigInteger createdBy, Date creationDate,
+			BigInteger modifyBy, Date modifyDate) {
 		super();
 		this.id = id;
 		this.appId = appId;
@@ -44,10 +45,10 @@ public class Promotion implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getAppId() {
+	public BigInteger getAppId() {
 		return appId;
 	}
-	public void setAppId(int appId) {
+	public void setAppId(BigInteger appId) {
 		this.appId = appId;
 	}
 	public String getAdPicPath() {
@@ -56,10 +57,10 @@ public class Promotion implements Serializable {
 	public void setAdPicPath(String adPicPath) {
 		this.adPicPath = adPicPath;
 	}
-	public int getAdPV() {
+	public BigInteger getAdPV() {
 		return adPV;
 	}
-	public void setAdPV(int adPV) {
+	public void setAdPV(BigInteger adPV) {
 		this.adPV = adPV;
 	}
 	public int getCarouselPosition() {
@@ -80,10 +81,10 @@ public class Promotion implements Serializable {
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
-	public int getCreatedBy() {
+	public BigInteger getCreatedBy() {
 		return createdBy;
 	}
-	public void setCreatedBy(int createdBy) {
+	public void setCreatedBy(BigInteger createdBy) {
 		this.createdBy = createdBy;
 	}
 	public Date getCreationDate() {
@@ -92,10 +93,10 @@ public class Promotion implements Serializable {
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
-	public int getModifyBy() {
+	public BigInteger getModifyBy() {
 		return modifyBy;
 	}
-	public void setModifyBy(int modifyBy) {
+	public void setModifyBy(BigInteger modifyBy) {
 		this.modifyBy = modifyBy;
 	}
 	public Date getModifyDate() {

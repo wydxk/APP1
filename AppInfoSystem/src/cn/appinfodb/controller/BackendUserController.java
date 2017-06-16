@@ -3,7 +3,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import cn.appinfodb.pojo.BackendUser;
 import cn.appinfodb.pojo.DataDictionary;
@@ -22,11 +21,7 @@ public class BackendUserController {
 	 * 登录
 	 * @return
 	 */
-	@RequestMapping(value="/login",method=RequestMethod.GET)
-	public String login(){
-		return "backendlogin";
-	}
-	@RequestMapping(value="/login",method=RequestMethod.POST)
+	@RequestMapping(value="/login")
 	public String login(@RequestParam String userCode,
 									@RequestParam String userPassword,
 									HttpSession session){

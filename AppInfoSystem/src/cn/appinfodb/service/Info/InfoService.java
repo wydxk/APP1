@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import cn.appinfodb.pojo.Info;
+
 public interface InfoService {
 	
 	public List<Info> selectInfo(String softwareName,
@@ -19,21 +20,15 @@ public interface InfoService {
 			 int flatformId,
 			 int categoryLevel1,
 			 int categoryLevel2,
-			 int categoryLevel3);	
+			 int categoryLevel3);
 	
-	public Info selectInfos(int id,int versionId);
+	public List<Info> selectFeClass();
 	
-	public boolean changeInfo(int status,int id);
-	
-	public boolean addInfo(Info info);
-	
-	public boolean selectByAPK(String APKName);
-	
-	public List<Info> getInfos(String softwareName,
-			int flatformId,
-			int status,
-			int categoryLevel1,
-			int categoryLevel2,
+	public List<Info> getInfos(String softwareName ,
+			int flatformId ,
+			int status ,
+			int categoryLevel1 ,
+			int categoryLevel2 ,
 			int categoryLevel3,
 			int cnindex,
 			int pageCount);
@@ -48,5 +43,13 @@ public interface InfoService {
 	/*根据Id查询详情*/
 	public Info  getInfById( int id);
 	
-	public Info selectInfoByInfoId(int id);		
+	/*根据id删除APP信息*/
+	public boolean delApp(int id);
+	
+	
+	public boolean changeVersionId(Info info);
+	
 }
+
+
+

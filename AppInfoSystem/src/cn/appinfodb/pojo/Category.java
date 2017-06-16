@@ -1,6 +1,7 @@
 package cn.appinfodb.pojo;
 
 import java.io.Serializable;
+
 import java.sql.Date;
 
 public class Category implements Serializable {

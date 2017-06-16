@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
    
    <h1>APP信息管理平台</h1>
-   <p><a href="BackendUser/login">后台管理系统入口</a></p>
+   <p><a href="back/backlogin.html">后台管理系统入口</a></p>
    <p><a href="dev/devlogin.html">开发者平台入口</a></p>
    
    

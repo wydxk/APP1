@@ -3,6 +3,7 @@ package cn.appinfodb.pojo;
 import java.io.Serializable;
 import java.sql.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
 
 public class BackendUser implements Serializable {
 	/**

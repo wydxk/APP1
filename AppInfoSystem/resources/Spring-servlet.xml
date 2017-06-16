@@ -34,13 +34,13 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 <!--  全局异常处理 -->
-<!-- <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
 			<props>
-				<prop key="java.lang.RuntimeException">backendlogin</prop>
+				<prop key="java.lang.RuntimeException">app</prop>
 			</props>
 		</property>
-</bean> -->
+</bean>
 
 <!-- 上传文件 -->
 <!-- 配置MultipartResolver,用于上传文件，使用Spring 的CommonsMultipartResolver -->

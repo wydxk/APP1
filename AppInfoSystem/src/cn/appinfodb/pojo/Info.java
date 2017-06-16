@@ -5,6 +5,7 @@ import java.util.Date;
 
 
 
+
 public class Info implements Serializable {
 	/**
 	 * 
@@ -34,20 +35,34 @@ public class Info implements Serializable {
 	private String logoPicPath;//LOGO图片url路径
 	private String logoLocPath;//LOGO图片的服务器存储路径
 	private int versionId;//最新的版本id
-	private int index;
-	private int pageCount;
+
+	
+
+	private DataDictionary dataDictionary;
+	private Category category;
+	
+	private String versionNo;
+	private String valueName;
 	private String flatformName;
+	private String statusName;
 	private String categoryName;
 	private String categoryLevel1Name;
 	private String categoryLevel2Name;
 	private String categoryLevel3Name;
-	private String statusName;
-	private String versionNo;
-	private String valueName;
-	private String typeCode;
-	private DataDictionary dataDictionary;
-	private Category category;
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public int getId() {
+		return id;
+	}
 	public Info(){}
 	public Info(int id, String softwareName, String aPKName,
 			String supportROM, String interfaceLanguage, String softwareSize,
@@ -83,88 +98,6 @@ public class Info implements Serializable {
 		this.logoPicPath = logoPicPath;
 		this.logoLocPath = logoLocPath;
 		this.versionId = versionId;
-	}
-	public DataDictionary getDataDictionary() {
-		return dataDictionary;
-	}
-	public void setDataDictionary(DataDictionary dataDictionary) {
-		this.dataDictionary = dataDictionary;
-	}
-	public Category getCategory() {
-		return category;
-	}
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-	public int getIndex() {
-		return index;
-	}
-	public void setIndex(int index) {
-		this.index = index;
-	}
-	public int getPageCount() {
-		return pageCount;
-	}
-	public void setPageCount(int pageCount) {
-		this.pageCount = pageCount;
-	}
-	public String getTypeCode() {
-		return typeCode;
-	}
-	public void setTypeCode(String typeCode) {
-		this.typeCode = typeCode;
-	}
-	public String getVersionNo() {
-		return versionNo;
-	}
-	public void setVersionNo(String versionNo) {
-		this.versionNo = versionNo;
-	}
-	public String getValueName() {
-		return valueName;
-	}
-	public void setValueName(String valueName) {
-		this.valueName = valueName;
-	}
-	public String getFlatformName() {
-		return flatformName;
-	}
-	public void setFlatformName(String flatformName) {
-		this.flatformName = flatformName;
-	}
-
-	public String getStatusName() {
-		return statusName;
-	}
-	public void setStatusName(String statusName) {
-		this.statusName = statusName;
-	}
-	public String getCategoryName() {
-		return categoryName;
-	}
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
-	}
-	public String getCategoryLevel1Name() {
-		return categoryLevel1Name;
-	}
-	public void setCategoryLevel1Name(String categoryLevel1Name) {
-		this.categoryLevel1Name = categoryLevel1Name;
-	}
-	public String getCategoryLevel2Name() {
-		return categoryLevel2Name;
-	}
-	public void setCategoryLevel2Name(String categoryLevel2Name) {
-		this.categoryLevel2Name = categoryLevel2Name;
-	}
-	public String getCategoryLevel3Name() {
-		return categoryLevel3Name;
-	}
-	public void setCategoryLevel3Name(String categoryLevel3Name) {
-		this.categoryLevel3Name = categoryLevel3Name;
-	}
-	public int getId() {
-		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
@@ -307,5 +240,69 @@ public class Info implements Serializable {
 	public void setVersionId(int versionId) {
 		this.versionId = versionId;
 	}
+	public DataDictionary getDataDictionary() {
+		return dataDictionary;
+	}
+	public void setDataDictionary(DataDictionary dataDictionary) {
+		this.dataDictionary = dataDictionary;
+	}
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	public String getVersionNo() {
+		return versionNo;
+	}
+	public void setVersionNo(String versionNo) {
+		this.versionNo = versionNo;
+	}
+	public String getValueName() {
+		return valueName;
+	}
+	public void setValueName(String valueName) {
+		this.valueName = valueName;
+	}
+	public String getFlatformName() {
+		return flatformName;
+	}
+	public void setFlatformName(String flatformName) {
+		this.flatformName = flatformName;
+	}
+	public String getStatusName() {
+		return statusName;
+	}
+	public void setStatusName(String statusName) {
+		this.statusName = statusName;
+	}
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	public String getCategoryLevel1Name() {
+		return categoryLevel1Name;
+	}
+	public void setCategoryLevel1Name(String categoryLevel1Name) {
+		this.categoryLevel1Name = categoryLevel1Name;
+	}
+	public String getCategoryLevel2Name() {
+		return categoryLevel2Name;
+	}
+	public void setCategoryLevel2Name(String categoryLevel2Name) {
+		this.categoryLevel2Name = categoryLevel2Name;
+	}
+	public String getCategoryLevel3Name() {
+		return categoryLevel3Name;
+	}
+	public void setCategoryLevel3Name(String categoryLevel3Name) {
+		this.categoryLevel3Name = categoryLevel3Name;
+	}
+	
+
+	
+	
 	
 }

@@ -6,18 +6,30 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.appinfodb.pojo.BackendUser;
-import cn.appinfodb.pojo.Info;
+import cn.appinfodb.pojo.Version;
 import cn.appinfodb.service.BackendUser.BackendUserService;
-import cn.appinfodb.service.Info.InfoService;
+import cn.appinfodb.service.Version.VersionService;
 
 
 
 public class Test {
-		@org.junit.Test
+		
 		public void show(){
 			ApplicationContext context =new ClassPathXmlApplicationContext("SpringConfig.xml");
-			InfoService infoService=(InfoService)context.getBean("infoService");
-			Info info=infoService.getInfById(49);
-			System.out.println(info.getAPKName());
+			BackendUserService backendUserService=(BackendUserService)context.getBean("backendUserService");
+			BackendUser	backendUser=backendUserService.fountBackendUserBy("admin", "123456");
+			System.out.println(backendUser);
 		}
+		@org.junit.Test
+		public void info(){
+			ApplicationContext context =new ClassPathXmlApplicationContext("SpringConfig.xml");
+			VersionService versionService =(VersionService)context.getBean("versionService");
+			List<Version> v= versionService.getVersionByInfoIdAndVersionid(38, 52);
+			System.out.println(v.size());
+			System.out.println(v.get(0).getAppName()+","+v.get(0).getModifyDate());
+			
+		}
+		
+		
+		
 }

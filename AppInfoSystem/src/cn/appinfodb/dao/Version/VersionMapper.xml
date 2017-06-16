@@ -4,20 +4,9 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.appinfodb.dao.Version.VersionMapper">
-<!-- 根据id查询新版本信息，后台 -->
-<select id="selectVersionById" resultType="Version">
-SELECT id,versionNo,versionSize,
-			versionInfo,downloadLink,
-			apkFileName,publishStatus 
-			FROM app_version 
-<where>
-		<if test="id!=0">
-				id=#{id}
-		</if>
-</where>
-</select>
-<!-- 根据info的id查询，开发 -->
-<select id="getVersionById" resultType="Version">
+
+	<select id="getVersionById" resultType="Version">
+
 		SELECT app_version.id as
 		id,app_info.id as appinfoId,
 		appId,versionNo,versionInfo,publishStatus,downloadLink
@@ -36,7 +25,7 @@ SELECT id,versionNo,versionSize,
 	<!-- <resultMap type="Version" id="versio" > <result property="softwareName" 
 		column="appName"/> </resultMap> -->
 
-	<!-- 根据条件查询历史版本信息，开发 -->
+	<!-- 根据条件查询历史版本信息 -->
 	<select id="getVersionByInfoIdAndVid" resultType="Version">
 		SELECT app_info.id AS
 		appinfoId,softwareName as appName,app_version.id AS
@@ -50,12 +39,64 @@ SELECT id,versionNo,versionSize,
 		app_version ON app_version.appId=app_info.id
 		
 		WHERE  typeCode='PUBLISH_STATUS'
-			<if test="appinfoId !=0">
+			<if test="appinfoId !=null and appinfoId!=''">
 				AND app_info.id=#{appinfoId}
 			</if>
-			<if test="versionId !=0">
+			<if test="versionId !=null and versionId!=''">
 				AND app_version.id=#{versionId}
 			</if>
 		
 	</select>
+
+<select id="selectVersionByAid" resultType="Version"  parameterType="int">
+		SELECT versionNo,app_version.id,versionSize,versionInfo,downloadLink,apkLocPath,
+		apkFileName FROM app_version 
+		INNER JOIN app_info ON app_info.versionId = app_version.id
+		WHERE app_info.id = #{id}
+	</select>
+<select id="selectVersion" resultType="Version">
+		SELECT app_info.id as AppinfoId,softwareName as appName,versionNo,publishStatus,versionSize,
+		valueName as publishStatusName,downloadLink,apkFileName,app_version.modifyDate as modifyDate FROM 
+		app_version INNER JOIN app_info ON app_info.id = app_version.appId
+		INNER JOIN data_dictionary ON app_version.publishStatus = data_dictionary.valueId 
+		WHERE typeName='发布状态' and app_info.id=#{id}
+	</select>
+	
+	
+	
+	<update id="changeVersion" parameterType="Version">
+		UPDATE app_version SET versionSize =#{versionSize},
+		modifyBy=#{modifyBy} ,modifyDate=#{modifyDate},
+		versionInfo =#{versionInfo} WHERE id= #{id}		
+	</update>
+	
+	<insert id="addVersion" parameterType="Version" >
+	INSERT INTO appinfodb.app_version
+		(
+		appId,versionNo,versionInfo,publishStatus,downloadLink,versionSize,createdBy,
+		creationDate,apkLocPath,apkFileName
+		)
+		VALUES
+		(
+		#{appId},#{versionNo},#{versionInfo},#{publishStatus},#{downloadLink},
+		#{versionSize},#{createdBy},#{creationDate},#{apkLocPath},#{apkFileName}
+		
+		);
+	</insert>
+	<!-- 查询最后插入的id号 -->
+	<select id="selectId" resultType="int" >
+		SELECT LAST_INSERT_ID();
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

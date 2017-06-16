@@ -1,6 +1,7 @@
 package cn.appinfodb.service.Info;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,66 +10,39 @@ import cn.appinfodb.pojo.Info;
 
 @Service("infoService")
 public class InfoServiceImpl implements InfoService {
-	@Autowired		
+	@Autowired
 	InfoMapper infoMapper;
 
-	@Override
-	public List<Info> selectInfo(String softwareName,
-													int flatformId,
-													int categoryLevel1, 
-													int categoryLevel2,
-													int categoryLevel3,
-													int cnindex, int pageCount) {
-		
-		return infoMapper.selectInfo(softwareName, flatformId, 
-														categoryLevel1, categoryLevel2, categoryLevel3, 
-														(cnindex-1)*pageCount, pageCount);
+	public void setInfoMapper(InfoMapper infoMapper) {
+		this.infoMapper = infoMapper;
 	}
 
 	@Override
-	public int selectInfoCount(String softwareName,
-												 int flatformId,
-												 int categoryLevel1, 
-												 int categoryLevel2, 
-												 int categoryLevel3) {
-		
-		return infoMapper.selectInfoCount(softwareName, flatformId, categoryLevel1, categoryLevel2, categoryLevel3);
+	/**
+	 * 根据条件查询信息并分页,管理
+	 */
+	public List<Info> selectInfo(String softwareName, int flatformId,
+			int categoryLevel1, int categoryLevel2, int categoryLevel3,
+			int cnindex, int pageCount) {
+
+		return infoMapper.selectInfo(softwareName, flatformId, categoryLevel1,
+				categoryLevel2, categoryLevel3, (cnindex - 1) * pageCount,
+				pageCount);
 	}
 
 	@Override
-	public Info selectInfos(int id,int versionId) {
-		
-		return infoMapper.selectInfosByid(id,versionId);
+	public int selectInfoCount(String softwareName, int flatformId,
+			int categoryLevel1, int categoryLevel2, int categoryLevel3) {
+
+		return infoMapper.selectInfoCount(softwareName, flatformId,
+				categoryLevel1, categoryLevel2, categoryLevel3);
 	}
 
 	@Override
-	public boolean changeInfo(int status,int id) {
-		int row=infoMapper.changeInfo(status,id);
-		if (row==1) {
-			return true;
-		}else{
-			return false;
-		}
-	}
+	public List<Info> selectFeClass() {
 
-	@Override
-	public boolean addInfo(Info info) {
-		int row=infoMapper.addInfo(info);
-		if (row==1) {
-			return true;
-		}else{
-			return false;
-		}
-	}
+		return infoMapper.selectFeClass();
 
-	@Override
-	public boolean selectByAPK(String APKName) {
-		Info info=infoMapper.selectByAPK(APKName);
-		if (info!=null) {
-			return true;
-		}else{
-			return false;
-		}
 	}
 
 	/**
@@ -105,8 +79,23 @@ public class InfoServiceImpl implements InfoService {
 	}
 
 	@Override
-	public Info selectInfoByInfoId(int id) {
-		
-		return infoMapper.selectInfoByInfoId(id);
-	}	
+	public boolean delApp(int id) {
+		int row= infoMapper.deleteApp(id);
+		if(row==1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public boolean changeVersionId(Info info) {
+		int row =infoMapper.changeVersionId(info);
+		if(row ==1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+
 }

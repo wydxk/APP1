@@ -79,14 +79,13 @@
 							<div class="col-md-6 col-sm-6 col-xs-12">
 							<input type="hidden" name="categorylevel2list" id="categorylevel2list"/>
         						<select name="queryCategoryLevel2" id="queryCategoryLevel2" class="form-control">
-        						 <option value="">--请选择--</option>
-        							<%-- <c:if test="${categoryLevel2List != null }">
-									  
+        							<c:if test="${categoryLevel2List != null }">
+									   <option value="">--请选择--</option>
 									   <c:forEach var="appCategory" items="${categoryLevel2List}">
 									   		<option <c:if test="${appCategory.id == queryCategoryLevel2 }">selected="selected"</c:if>
 									   		value="${appCategory.id}">${appCategory.categoryName}</option>
 									   </c:forEach>
-									</c:if> --%>
+									</c:if>
         						</select>
 							</div>
 						</div>
@@ -96,14 +95,13 @@
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">三级分类</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
         						<select name="queryCategoryLevel3" id="queryCategoryLevel3" class="form-control">
-        						<option value="">--请选择--</option>
-        							<%-- <c:if test="${categoryLevel3List != null }">
-									   
+        							<c:if test="${categoryLevel3List != null }">
+									   <option value="">--请选择--</option>
 									   <c:forEach var="appCategory" items="${categoryLevel3List}">
 									   		<option <c:if test="${appCategory.id == queryCategoryLevel3 }">selected="selected"</c:if>
 									   		value="${appCategory.id}">${appCategory.categoryName}</option>
 									   </c:forEach>
-									</c:if> --%>
+									</c:if>
         						</select>
 							</div>
 						</div>
@@ -122,7 +120,7 @@
 				class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 				<div class="row">
 					<div class="col-sm-12">
-					<a href="${pageContext.request.contextPath}/dev/addDev" class="btn btn-success btn-sm">新增APP基础信息</a>
+					<a href="${pageContext.request.contextPath}/dev/flatform/app/appinfoadd" class="btn btn-success btn-sm">新增APP基础信息</a>
 						<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
 							cellspacing="0" width="100%" role="grid" aria-describedby="datatable-responsive_info" style="width: 100%;">
 							<thead>

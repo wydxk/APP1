@@ -88,13 +88,12 @@ $(".modifyVersion").on("click",function(){
 	}
 });
 $(".modifyAppInfo").on("click",function(){
-	
 	var obj = $(this);
 	var status = obj.attr("status");
 	if(status == "1" || status == "3"){//待审核、审核未通过状态下才可以进行修改操作
 		window.location.href="appinfomodify?id="+ obj.attr("appinfoid");
 	}else{
-		alert("该APP应用的状态为：【"+obj.attr("statusName")+"】,不能修改！");
+		alert("该APP应用的状态为：【"+obj.attr("statusname")+"】,不能修改！");
 	}
 });
 
@@ -188,10 +187,13 @@ $(".viewApp").on("click",function(){
 
 $(".deleteApp").on("click",function(){
 	var obj = $(this);
+	alert(obj.attr("appsoftwarename"));
 	if(confirm("你确定要删除APP应用【"+obj.attr("appsoftwarename")+"】及其所有的版本吗？")){
+		
+		
 		$.ajax({
 			type:"GET",
-			url:"delapp.json",
+			url:"delapp",
 			data:{id:obj.attr("appinfoid")},
 			dataType:"json",
 			success:function(data){
@@ -204,10 +206,14 @@ $(".deleteApp").on("click",function(){
 					alert("对不起，APP应用【"+obj.attr("appsoftwarename")+"】不存在");
 				}
 			},
+			
 			error:function(data){
 				alert("对不起，删除失败");
+				
 			}
+			
 		});
+		
 	}
 });
 
