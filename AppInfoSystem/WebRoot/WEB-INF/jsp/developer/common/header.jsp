@@ -81,7 +81,7 @@
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath }/user/appinfolist.html">APP维护</a>
+										<li><a href="${pageContext.request.contextPath }/dev/applist.html">APP维护</a>
 										</li>
 									</ul></li>
 							</ul>
@@ -125,7 +125,7 @@
 									class=" fa fa-angle-down"></span> </a>
 								<ul class="dropdown-menu dropdown-usermenu pull-right">
 									<li><a
-										href="${pageContext.request.contextPath }/user/loginout.html"><i
+										href="${pageContext.request.contextPath }/dev/logout.html"><i
 											class="fa fa-sign-out pull-right"></i> Log Out</a>
 									</li>
 								</ul></li>

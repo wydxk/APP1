@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.appinfodb.dao.devUser.DevUserMapper">
+
+	<select id="getDevUserBuDevCode" resultType="DevUser">
+		SELECT id,devCode,devName,devPassword
+		FROM dev_user
+		<where>
+			<if test="devCode!=null and devCode!=''">
+				and devCode=#{devCode}
+			</if>
+		</where>
+
+	</select>
+	
+</mapper>
+

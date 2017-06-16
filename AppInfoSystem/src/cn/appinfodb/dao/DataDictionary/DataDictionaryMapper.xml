@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.appinfodb.dao.DataDictionary.DataDictionaryMapper">
+<select id="selectDataById" resultType="DataDictionary">
+SELECT id,typeCode,typeName,valueId,valueName FROM data_dictionary
+<trim prefix="where" prefixOverrides="and|or">
+id=#{id}
+</trim>
+</select>
+
+<select id="getflatFormList" resultType="DataDictionary">
+SELECT id,typeCode,typeName,valueId,valueName FROM data_dictionary
+where typeCode='APP_FLATFORM'
+</select>
+
+<select id="getStatus" resultType="DataDictionary">
+	SELECT id,valueId,valueName FROM data_dictionary
+	WHERE typeCode='APP_STATUS'	
+</select>
+
+
+<select id="selectDataBytypeCode" resultType="DataDictionary">
+SELECT id,typeCode,typeName,valueId,valueName FROM data_dictionary
+where typeCode=#{typeCode}
+</select>
+
+</mapper>

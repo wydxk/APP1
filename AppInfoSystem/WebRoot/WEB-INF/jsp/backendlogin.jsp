@@ -32,7 +32,7 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form action="${pageContext.request.contextPath }/back/backlogin.html" method="post">
+            <form action="${pageContext.request.contextPath }/BackendUser/login"  method="post">
               <h1>后台管理系统</h1>
               <div>
                 <input type="text" class="form-control" name="userCode" placeholder="请输入用户名" required="" />
@@ -40,7 +40,7 @@
               <div>
                 <input type="password" class="form-control" name="userPassword" placeholder="请输入密码" required="" />
               </div>
-              <span>${error }</span>
+              <span><%-- ${error } --%>${exception.message}</span>
               <div>
               	<button type="submit" class="btn btn-success">登     录</button>
               	<button type="reset" class="btn btn-default">重　填</button>
