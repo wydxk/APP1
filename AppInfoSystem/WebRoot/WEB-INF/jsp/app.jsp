@@ -23,13 +23,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-   
    <h1>APP信息管理平台</h1>
    <p><a href="back/backlogin.html">后台管理系统入口</a></p>
-   <p><a href="dev/devlogin.html">开发者平台入口</a></p>
-   
-   
-   
-   
+   <p><a href="user/login.html">开发者平台入口</a></p>
   </body>
 </html>

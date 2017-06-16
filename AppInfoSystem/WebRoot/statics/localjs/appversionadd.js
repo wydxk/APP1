@@ -1,6 +1,6 @@
 $(function(){  
 	$("#back").on("click",function(){
-		window.location.href = "../applist.html";
+		window.location.href = "list";
 	});
 });
       

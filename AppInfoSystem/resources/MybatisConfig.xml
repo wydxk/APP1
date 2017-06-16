@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
-"http://mybatis.org/dtd/mybatis-3-config.dtd">
-<configuration>
-
-		<settings>
-       		<!-- 2. 设置是否懒加载，设置为false ,即立即加载 -->
-       		<setting name="lazyLoadingEnabled" value="false"/>
-       </settings>
-		
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>		
+		<!-- 设置数据源 , 设置映射文件的路径  移交给 Spring 配置 -->		
+		<!-- 设置别名 -->
 		<typeAliases>
-					<package name="cn.appinfodb.pojo"/>
+			<package name="cn.pojo"/>
 		</typeAliases>
-</configuration>
+
+</configuration> 

@@ -106,7 +106,7 @@ $(function(){
 	});
 	
 	$("#back").on("click",function(){
-		window.location.href = "../dev/applist.html";
+		window.location.href = "list";
 	});
 	
 	

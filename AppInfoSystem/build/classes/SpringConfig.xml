@@ -1,47 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"    
- 			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
- 			 xmlns:context="http://www.springframework.org/schema/context"
- 			 xmlns:tx="http://www.springframework.org/schema/tx"
- 			 xmlns:aop="http://www.springframework.org/schema/aop"
- 		     xsi:schemaLocation="http://www.springframework.org/schema/beans   
- 		          								 http://www.springframework.org/schema/beans/spring-beans.xsd
- 		          								 http://www.springframework.org/schema/context 
- 		          								 http://www.springframework.org/schema/context/spring-context.xsd
- 		          								 http://www.springframework.org/schema/tx 
- 		          								 http://www.springframework.org/schema/tx/spring-tx.xsd 
-												 http://www.springframework.org/schema/aop 
-												 http://www.springframework.org/schema/aop/spring-aop.xsd">
-
-<context:component-scan base-package="cn.appinfodb.service"></context:component-scan>
-
-<!-- 读取properties文件 -->
-<!-- <context:property-placeholder location="data.properties"/> -->
-<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context 
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx.xsd
+           http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+     
+     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location">
-					<value>classpath:data.properties</value>
+			<value>classpath:db.properties</value>
 		</property>
-</bean>
-<!-- 获取数据源 -->
-<bean id="datasource" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="${driver}"></property>
-		<property name="url" value="${url}"></property>
-		<property name="username" value="${username}"></property>
-		<property name="password" value="${password}"></property>
-</bean>
-<!-- 获取SqlSessionFactory -->
-<bean id="factory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<!-- 获取mybatis的位置 -->
-		<property name="configLocation">
-					<value>classpath:MybatisConfig.xml</value>
-		</property>
-		<!-- 读取数据源 -->
-		<property name="dataSource" ref="datasource"></property>
-		
-</bean>
-<!-- 自动扫描映射接口 -->
-<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="cn.appinfodb.dao"></property>
-</bean>
-<!-- 注解 -->
-</beans>
+	</bean>
+     
+     <!-- 创建数据源 -->
+	 
+	 	<!-- destroy-method="close"的作用是当数据库连接不使用的时候,就把该连接重新放到数据池中,方便下次使用调用 -->
+	 
+	  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	  	<property name="driverClassName" value="${driver}"></property>
+	  	<property name="url">
+	  	<!-- <![CDATA[jdbc:mysql://localhost:3306/Person?useUnicode=true&characterEncoding=utf8]]> -->
+	  		<value>${url}</value>
+	  	</property>
+	  	<property name="username" value="${username}"></property>
+	  	<property name="password" value="${password}"></property>
+	 </bean> 
+	  
+	
+
+     <!-- 创建SqlSessionFacotry -->
+     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+     	<!-- 设置 Mybatis的配置文件路径 -->
+ 		<property name="configLocation">
+ 			<value>classpath:MybatisConfig.xml</value>
+ 		</property>
+
+     
+     
+     <!-- 设置映射文件路径 -->
+ 		<property name="mapperLocations">
+ 			<list>
+ 				<value>classpath:cn/dao/UserMapper.xml</value>
+ 			</list>
+ 		</property>
+ 		
+ 		<!-- 设置数据源 -->
+ 		 <property name="dataSource" ref="dataSource"></property>
+ 	</bean>
+ 	
+ 	
+	 
+	 	
+	 	
+	 	
+
+ 	<!-- 数据访问层 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="cn.dao"></property>
+	</bean>
+ 
+ 	<!-- 业务逻辑层 -->
+ 	<context:component-scan base-package="cn.service"></context:component-scan>
+ 	
+     
+     
+     </beans>

@@ -5,7 +5,7 @@
 	<div class="title_left">
 		<h3>
 			<h3>
-			欢迎你：${BACKENDUSER_SESSION.userName }<strong> | 角色：${a.valueName }</strong>
+			欢迎你：${userSession.userName }<strong> | 角色：${userSession.userTypeName }</strong>
 			</h3>
 		</h3>
 	</div>
